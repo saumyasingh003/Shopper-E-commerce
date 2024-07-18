@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Disclosure,
   DisclosureButton,
@@ -12,18 +12,27 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/logo.png";
 
-const navigation = [
-  { name: "Dashboard", href: "/home", current: true }];
-//   { name: "Team", href: "#", current: false },
-//   { name: "Projects", href: "#", current: false },
-//   { name: "Calendar", href: "#", current: false },
-// ];
+const navigation = [{ name: "Dashboard", href: "/home", current: true }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+function getUser() {
+  let user = localStorage.getItem("user");
+  if (user) {
+   return true;
+  } else {
+    return false
+  }
+}
 const Navbar = () => {
+  const [user, setUser] = useState(getUser());
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -44,11 +53,7 @@ const Navbar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-10 w-10"
-                    src={logo}
-                    alt="Your Company"
-                  />
+                  <img className="h-10 w-10" src={logo} alt="Your Company" />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -115,32 +120,54 @@ const Navbar = () => {
                           </a>
                         )}
                       </MenuItem>
-                      <MenuItem>
-                        {({ focus }) => (
-                          <a
-                            href="/Login"
-                            className={classNames(
-                              focus ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
+                      {!user && (
+                        <>
+                          <MenuItem>
+                            {({ focus }) => (
+                              <a
+                                href="/Login"
+                                className={classNames(
+                                  focus ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Login
+                              </a>
                             )}
-                          >
-                             Login
-                          </a>
-                        )}
-                      </MenuItem>
-                      <MenuItem>
-                        {({ focus }) => (
-                          <a
-                            href="/Register"
-                            className={classNames(
-                              focus ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
+                          </MenuItem>
+                          {/* <MenuItem>
+                            {({ focus }) => (
+                              <a
+                                href="/Register"
+                                className={classNames(
+                                  focus ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Register
+                              </a>
                             )}
-                          >
-                            Register
-                          </a>
-                        )}
-                      </MenuItem>
+                          </MenuItem> */}
+                        </>
+                      )}
+                      {user && (
+                        <>
+                        <MenuItem>
+                          {({ focus }) => (
+                            <a
+                              href="/Login"
+                              onClick={handleLogout}
+                              className={classNames(
+                                focus ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Logout
+                            </a>
+                          )}
+                        </MenuItem>
+                          </>
+                      )}
                     </MenuItems>
                   </Transition>
                 </Menu>

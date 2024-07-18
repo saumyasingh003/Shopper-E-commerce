@@ -15,8 +15,8 @@ function createCategories(categories, parentId = null) {
     categoryList.push({
       _id: cate._id,
       name: cate.name,
-      slug: cate.slug,
-      children: createCategories(categories, cate._id),
+      slug: cate.name,
+      subcategory: createCategories(categories, cate._id),
     });
   }
 
@@ -69,3 +69,52 @@ exports.getCategories = (req, res) => {
       res.status(500).json({ error });
     });
 };
+
+
+
+exports.updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const updateData = {
+    name: req.body.name,
+    slug: req.body.name,
+  };
+
+  if (req.file) {
+    updateData.categoryImage = process.env.API + '/public/' + req.file.filename;
+  }
+
+  if (req.body.parentId) {
+    updateData.parentId = req.body.parentId;
+  }
+
+  try {
+    const updatedCategory = await Category.findByIdAndUpdate(id, updateData, { new: true }).exec();
+
+    if (!updatedCategory) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    res.status(200).json({ category: updatedCategory });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+exports.deleteCategory = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedCategory = await Category.findByIdAndDelete(id).exec();
+
+    if (!deletedCategory) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    res.status(200).json({ message: "Category deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+
+

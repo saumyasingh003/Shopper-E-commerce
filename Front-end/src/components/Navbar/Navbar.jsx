@@ -9,21 +9,27 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+ import { RxHamburgerMenu } from "react-icons/rx";
+ import { FaBell } from "react-icons/fa";
+ import { IoClose } from "react-icons/io5";
+ import { FaShoppingCart } from "react-icons/fa";
+
+
 import logo from "../assets/logo.png";
 import { useAuth } from "../../context/AuthContext";
+import SecondNavbar from "./SecondNavbar";
 const navigation = [
   { name: "Home", href: "/home", current: true },
-  { name: "Cloths", href: "#", current: false },
-  { name: "Tech", href: "#", current: false },
-  { name: "Grocery", href: "#", current: false },
-];
+  { name: "About", href: "#", current: false },
+//   { name: "Tech", href: "#", current: false },
+//   { name: "Grocery", href: "#", current: false },
+ ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
+export default function Navbar({cartCount}) {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const handleLogout = () => {
@@ -43,9 +49,9 @@ export default function Navbar() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <IoClose className="block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <RxHamburgerMenu className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </DisclosureButton>
               </div>
@@ -81,10 +87,10 @@ export default function Navbar() {
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <FaShoppingCart className="h-6 w-6" aria-hidden="true" />
 
                   <div className="absolute bottom-5 left-3 w-6 h-6 rounded-full bg-red-600 text-white text-center flex items-center justify-center">
-                    0
+                    {cartCount}
                   </div>
                 </button>
 
@@ -113,7 +119,7 @@ export default function Navbar() {
                       <MenuItem>
                         {({ focus }) => (
                           <a
-                            href="#"
+                            href="/profile"
                             className={classNames(
                               focus ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -178,7 +184,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
+    
           <DisclosurePanel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
@@ -199,6 +205,7 @@ export default function Navbar() {
               ))}
             </div>
           </DisclosurePanel>
+      
         </>
       )}
     </Disclosure>

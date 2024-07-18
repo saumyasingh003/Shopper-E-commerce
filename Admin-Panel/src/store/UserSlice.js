@@ -6,9 +6,10 @@ export const loginUser = createAsyncThunk(
   'admin/loginUser',
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${hostName}/login`, userCredentials);
+      const response = await axios.post(`${hostName}/admin/login`, userCredentials);
       const data = await response.data;
       localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('token', data.token)
       window.location.href = '/home';
       return data;
     } catch (error) {
