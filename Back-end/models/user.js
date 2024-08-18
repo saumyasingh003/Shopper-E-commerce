@@ -20,6 +20,22 @@ contactNumber:{
   required: true,
  
 },
+pinCode:{
+  type:String,
+
+},
+state:{
+  tye:String
+},
+country:{
+  type:String
+},
+address:{
+  type:String
+},
+city:{
+  type:String
+},
 role:{
   type: String,
   enum:['user','admin'],

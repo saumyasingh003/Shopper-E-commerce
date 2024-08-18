@@ -10,7 +10,7 @@ const ProductDetailPage = ({ onAddToCart }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  // const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     get(`/product/detail/${slug}`)
@@ -30,13 +30,13 @@ const ProductDetailPage = ({ onAddToCart }) => {
         product: product._id,
         name: product.name,
         price: product.price,
-        quantity: quanity,
+        quantity: 1,
         img: selectedImage,
       },
     };
 
     post("/user/cart/addtocart", cartItem)
-      .then((response) => response.json())
+      .then((response) => response)
       .then((data) => {
         if (data.error) {
           console.error(data.error);
@@ -74,15 +74,15 @@ const ProductDetailPage = ({ onAddToCart }) => {
     return x.length > 1 ? result + "." + x[1] : result;
   }
 
-  const increment = () => {
-    setQuantity(quantity + 1);
-  };
+  // const increment = () => {
+  //   setQuantity(quantity + 1);
+  // };
 
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  // const decrement = () => {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // };
 
   return (
     <div className="container mt-10 mx-auto px-4">
@@ -147,7 +147,7 @@ const ProductDetailPage = ({ onAddToCart }) => {
               <span className="mr-2">Buy Now</span>
             </button>
           </div>
-          <div className="flex items-center space-x-2 mt-4">
+          {/* <div className="flex items-center space-x-2 mt-4">
             <button
               onClick={decrement}
             
@@ -165,7 +165,7 @@ const ProductDetailPage = ({ onAddToCart }) => {
               <FaPlus style={{ color: "black" }}/>
             </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -17,18 +17,21 @@ axiosApi.interceptors.response.use(
 
 export async function get(url, params, config = {}) {
   if (params) {
-    const queryString = Object.keys(params)
-      .map((key) => key + "=" + params[key])
-      .join("&");
+    var queryString = params
+      ? Object.keys(params)
+          .map((key) => key + "=" + params[key])
+          .join("&")
+      : "";
     return axiosApi
       .get(`${url}?${queryString}`, { ...config })
       .then((response) => response.data);
   } else {
     return axiosApi
-      .get(url, { ...config })
+      .get(`${url}`, { ...config })
       .then((response) => response.data);
   }
 }
+
 
 export async function post(url, data, config = {}) {
   let headers = {

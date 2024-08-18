@@ -10,7 +10,8 @@ const adminAuthRoutes = require("./routes/admin/authRoutes");
 const categoryRoutes = require("./routes/admin/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-
+const orderRoutes = require("./routes/orderRoutes")
+const adminOrderRoutes = require("./routes/admin/orderRoutes")
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -34,6 +35,7 @@ app.use("/", adminAuthRoutes);
 app.use("/", categoryRoutes);
 app.use("/", productRoutes);
 app.use("/", cartRoutes);
-
+app.use("/", orderRoutes)
+app.use("/", adminOrderRoutes)
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Server is running on Port ${port}`));

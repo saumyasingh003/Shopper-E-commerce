@@ -19,7 +19,7 @@ exports.registerUser = (req, res) => {
       const _user = new User({
         fullname,
         email,
-        password,
+        password, 
         role:'user',
         contactNumber,
       });
@@ -71,3 +71,32 @@ exports.loginUser = (req, res) => {
       }
     });
 };
+
+
+exports.updateAddressDetails = async(req,res)=>{
+  const userId = req.user._id
+  if(!userId){
+    res.status(404).json({mesage:"User not found!"})
+  }
+  const {state, country, city, address, pinCode} = req.body
+  try{
+
+    const updatedDetails = await User.findOneAndUpdate(
+      {_id: userId},
+      {
+        $set:{
+          "state":state,
+          "city":city,
+          "country":country,
+          "address":address,
+          "pinCode":pinCode
+        },
+      },
+      {new:true}
+    )
+   res.status(200).json({message:"Address Updated Successfully!", user:updatedDetails})
+  }catch(err){
+    console.error(err)
+    res.status(500).json({messgae:"Error Updating Address Details!"})
+  }
+}

@@ -87,11 +87,18 @@ export default function Navbar({cartCount}) {
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <FaShoppingCart className="h-6 w-6" aria-hidden="true" />
+                  <a href='/profile'>
+                    
+                    <deiv>
 
+                         <FaShoppingCart className="h-6 w-6" />
+                    </deiv>
                   <div className="absolute bottom-5 left-3 w-6 h-6 rounded-full bg-red-600 text-white text-center flex items-center justify-center">
                     {cartCount}
                   </div>
+                   
+                  </a>
+
                 </button>
 
                 {/* Profile dropdown */}
