@@ -2,7 +2,7 @@ import axios from "axios";
 
 const token = localStorage.getItem("token");
 
-export const API_URL = "http://localhost:4000";
+export const API_URL = "https://shopper-backend-api.vercel.app";
 
 const axiosApi = axios.create({
   baseURL: API_URL,

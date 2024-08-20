@@ -1,6 +1,6 @@
 
 const config = {
-    hostName: 'http://localhost:4000', 
+    hostName: 'https://shopper-backend-api.vercel.app', 
    
   };
   

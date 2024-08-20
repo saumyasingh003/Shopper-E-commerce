@@ -91,7 +91,7 @@ const ProductDetailPage = ({ onAddToCart }) => {
           {product.productPictures?.map((picture, index) => (
             <img
               key={index}
-              src={`http://localhost:4000/public/${picture.img}`}
+              src={`https://shopper-backend-api.vercel.app/public/${picture.img}`}
               alt={product.name}
               className={`w-16 h-16 mb-4 cursor-pointer ${
                 selectedImage === picture.img ? "border-2 border-blue-500" : ""
@@ -102,7 +102,7 @@ const ProductDetailPage = ({ onAddToCart }) => {
         </div>
         <div className="flex-1">
           <img
-            src={`http://localhost:4000/public/${selectedImage}`}
+            src={`https://shopper-backend-api.vercel.app/public/${selectedImage}`}
             alt={product.name}
             className="w-96 h-76 object-cover rounded"
           />

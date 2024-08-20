@@ -23,7 +23,7 @@ const Register = () => {
 
 //     try {
      
-//       const response = await axios.post("http://localhost:4000/register", data);
+//       const response = await axios.post("https://shopper-backend-api.vercel.app/register", data);
     
 //         console.log(response)
 //         toast.success("Registration Successful!! Welcome");

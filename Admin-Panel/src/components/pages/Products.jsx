@@ -258,7 +258,7 @@ const Products = () => {
                                     className="flex justify-center"
                                   >
                                     <img
-                                      src={`http://localhost:4000/public/${item.img}`}
+                                      src={`https://shopper-backend-api.vercel.app/public/${item.img}`}
                                       className="h-80 w-80 object-cover"
                                       alt={`Product Image ${index + 1}`}
                                     />
@@ -428,7 +428,7 @@ const Products = () => {
                         (picture, index) => (
                           <div key={index} className="relative mr-2 mb-2">
                             <img
-                              src={`http://localhost:4000/public/${picture.img}`}
+                              src={`https://shopper-backend-api.vercel.app/public/${picture.img}`}
                               alt={`Product ${index}`}
                               className="h-20 w-20 object-cover rounded"
                             />
