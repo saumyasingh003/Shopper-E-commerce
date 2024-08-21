@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const {corsOptions} = require('./config/corsOptions')
+
 const app = express();
-app.use(cors(corsOptions));
 const path = require("path");
 const dotenv = require("dotenv").config();
 
@@ -17,13 +16,16 @@ const adminOrderRoutes = require("./routes/admin/orderRoutes")
 
 
 mongoose
-  .connect(`${process.env.MONGODB_URL}`)
+.connect(`${process.env.MONGODB_URL}`)
   .then(() => {
     console.log("Database Connected!");
   })
   .catch((error) => {
     console.log("Error while connecting to databse!", error);
   });
+  app.use(cors({
+    origin:'*'
+  }));
 app.use(express.json());
 app.use("/public" ,express.static(path.join(__dirname,"/uploads")));
 app.use("/", userAuthRoutes);
