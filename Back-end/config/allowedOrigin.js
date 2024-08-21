@@ -5,5 +5,5 @@ const allowedOrigins = [
     "https://shopper-admin-murex.vercel.app",
     "https://shopper-frontend-beta.vercel.app"
   ];
-  export default allowedOrigins;
-  
+ 
+  module.exports = allowedOrigins
