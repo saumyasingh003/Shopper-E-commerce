@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const {corsOptions} = require('./config/corsOptions')
 const app = express();
+app.use(cors(corsOptions));
 const path = require("path");
 const dotenv = require("dotenv").config();
 
@@ -12,7 +14,7 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes")
 const adminOrderRoutes = require("./routes/admin/orderRoutes")
-app.use(cors());
+
 
 mongoose
   .connect(`${process.env.MONGODB_URL}`)
