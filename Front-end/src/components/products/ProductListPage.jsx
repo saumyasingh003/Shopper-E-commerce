@@ -56,7 +56,7 @@ const ProductListPage = () => {
         <div className=" p-6 rounded-lg bg-gray-100 shadow-md" key={index}>
           {product.productPictures?.length > 0 && (
             <img
-              src={`https://shopper-backend-api.vercel.app/public/${product.productPictures[0]?.img}`}
+              src={`https://shopper-e-commerce.onrender.com/public/${product.productPictures[0]?.img}`}
               alt={product.name}
               className="w-64 h-40  mb-4 rounded w-f"
             />

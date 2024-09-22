@@ -2,7 +2,7 @@ import axios from "axios";
 
 const token = localStorage.getItem("token");
 
-export const API_URL = "https://shopper-backend-api.vercel.app";
+export const API_URL = "https://shopper-e-commerce.onrender.com";
 
 const axiosApi = axios.create({
   baseURL: API_URL,

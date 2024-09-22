@@ -15,7 +15,7 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://shopper-backend-api.vercel.app/login", data);
+      const response = await axios.post("https://shopper-e-commerce.onrender.com/login", data);
       console.log(response)
       const token = localStorage.setItem("token", response.data.token);
       const userId = localStorage.setItem("userId", response.data.user._id)

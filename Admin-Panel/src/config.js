@@ -1,6 +1,6 @@
 
 const config = {
-    hostName: 'https://shopper-backend-api.vercel.app', 
+    hostName: 'https://shopper-e-commerce.onrender.com', 
    
   };
   

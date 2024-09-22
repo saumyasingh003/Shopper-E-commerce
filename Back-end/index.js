@@ -16,7 +16,8 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes")
 const adminOrderRoutes = require("./routes/admin/orderRoutes");
-const corsOptions = require("./config/corsOptions");
+const corsOptions = require('./config/corsOptions');
+
 
 
 mongoose
